@@ -31,7 +31,7 @@ public class InventoryContextCommandExpansion implements ICommandPack {
 					itemname = sptArgs[0];
 					slot = sptArgs[1];
 				} else {
-					caller.playerNarrator.narrate("This command needs two arguments. See help EQUIP.\n");
+					caller.narrate("This command needs two arguments. See help EQUIP.\n");
 					return;
 				}
 
@@ -50,15 +50,15 @@ public class InventoryContextCommandExpansion implements ICommandPack {
 
 					if (localInventory != null) {
 						if (localInventory.transfer(itemname, res)) {
-							caller.playerNarrator.narrate("Item equiped.\n");
+							caller.narrate("Item equiped.\n");
 						} else {
-							caller.playerNarrator.narrate("Couldn't transfer the item.\n");
+							caller.narrate("Couldn't transfer the item.\n");
 						}
 					} else {
-						caller.playerNarrator.narrate("You don't carry an inventory.\n");
+						caller.narrate("You don't carry an inventory.\n");
 					}
 				} else {
-					caller.playerNarrator.narrate("You don't have that slot.\n");
+					caller.narrate("You don't have that slot.\n");
 				}
 			}
 		});
@@ -73,19 +73,19 @@ public class InventoryContextCommandExpansion implements ICommandPack {
 				if (lh != null) {
 					if (localInventory != null) {
 						if (lh.getItem(0) != null) {
-							if (lh.transfer(lh.getItem(0).name, localInventory)) {
-								caller.playerNarrator.narrate("Item dropped.\n");
+							if (lh.transfer(lh.getItem(0).getName(), localInventory)) {
+								caller.narrate("Item dropped.\n");
 							} else {
-								caller.playerNarrator.narrate("Couldn't transfer the item.\n");
+								caller.narrate("Couldn't transfer the item.\n");
 							}
 						} else {
-							caller.playerNarrator.narrate("You don't have an item equiped.\n");
+							caller.narrate("You don't have an item equiped.\n");
 						}
 					} else {
-						caller.playerNarrator.narrate("You don't carry an inventory.\n");
+						caller.narrate("You don't carry an inventory.\n");
 					}
 				} else {
-					caller.playerNarrator.narrate("You don't have that slot.\n");
+					caller.narrate("You don't have that slot.\n");
 				}
 			}
 		});
@@ -100,19 +100,19 @@ public class InventoryContextCommandExpansion implements ICommandPack {
 				if (lh != null) {
 					if (localInventory != null) {
 						if (lh.getItem(0) != null) {
-							if (lh.transfer(lh.getItem(0).name, localInventory)) {
-								caller.playerNarrator.narrate("Item dropped.\n");
+							if (lh.transfer(lh.getItem(0).getName(), localInventory)) {
+								caller.narrate("Item dropped.\n");
 							} else {
-								caller.playerNarrator.narrate("Couldn't transfer the item.\n");
+								caller.narrate("Couldn't transfer the item.\n");
 							}
 						} else {
-							caller.playerNarrator.narrate("You don't have an item equiped.\n");
+							caller.narrate("You don't have an item equiped.\n");
 						}
 					} else {
-						caller.playerNarrator.narrate("You don't carry an inventory.\n");
+						caller.narrate("You don't carry an inventory.\n");
 					}
 				} else {
-					caller.playerNarrator.narrate("You don't have that slot.\n");
+					caller.narrate("You don't have that slot.\n");
 				}
 			}
 		});

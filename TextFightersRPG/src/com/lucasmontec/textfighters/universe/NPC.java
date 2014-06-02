@@ -34,7 +34,7 @@ public abstract class NPC extends UpdateActor {
 	}
 
 	protected void speak(Player p, String s) {
-		p.playerNarrator.narrate(name + ": " + s + "\n");
+		p.narrate(name + ": " + s + "\n");
 	}
 
 	@Override

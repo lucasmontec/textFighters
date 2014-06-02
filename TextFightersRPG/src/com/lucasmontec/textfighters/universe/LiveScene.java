@@ -31,26 +31,24 @@ public class LiveScene extends SceneNode {
 		// NPC system
 		addTrigger(new TriggerSceneEntry("NPCTRIGGER_INSTALL", new Action() {
 			@Override
-			public String act(Player context, TaleDriver driver) {
+			public void act(Player context, TaleDriver driver) {
 				for (ActionNode n : actionGraphs) {
 					ActionGraphStreamReader reader = new ActionGraphStreamReader(context, n);
 					driver.getCommandProcessor().installStreamReader(reader);
 					storeReaderForPlayer(context,reader);
 				}
-				return null;
 			}
 		}));
 
 		addTrigger(new TriggerSceneExit("NPCTRIGGER_REMOVE", new Action() {
 			@Override
-			public String act(Player context, TaleDriver driver) {
+			public void act(Player context, TaleDriver driver) {
 				HashSet<ActionGraphStreamReader> readers = installedReaders.get(context);
 				for (ActionGraphStreamReader rd : readers) {
 					rd.close();
 				}
 				readers.clear();
 				installedReaders.put(context, null);
-				return null;
 			}
 		}));
 	}

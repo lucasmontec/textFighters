@@ -2,7 +2,7 @@ package com.lucasmontec.textfighters.universe.commands;
 
 import java.util.HashSet;
 
-import alientextgame.base.commandPacks.InventoryCommands;
+import alientextgame.base.commandPacks.ItemContainerCommands;
 import alientextgame.base.contexts.BaseContexts;
 import alientextgame.core.TaleDriver;
 import alientextgame.core.TextCommand;
@@ -43,15 +43,15 @@ public class StandartContextCommandExpansion implements ICommandPack {
 					if (container != null) {
 						if (container.store(item)) {
 							driver.getHistory().getActiveScene(caller).removeActor(item);
-							caller.playerNarrator.narrate("Item stored.\n");
+							caller.narrate("Item stored.\n");
 						} else {
-							caller.playerNarrator.narrate("Can't store item.\n");
+							caller.narrate("Can't store item.\n");
 						}
 					} else {
-						caller.playerNarrator.narrate("You don't carry an inventory.\n");
+						caller.narrate("You don't carry an inventory.\n");
 					}
 				} else {
-					caller.playerNarrator.narrate("There's no such item.\n");
+					caller.narrate("There's no such item.\n");
 				}
 			}
 		});
@@ -61,7 +61,7 @@ public class StandartContextCommandExpansion implements ICommandPack {
 			@Override
 			public void call(Player caller, String[] args, TaleDriver driver) {
 				if (args == null || args.length == 0) {
-					caller.playerNarrator.narrate("This commands requires a target.");
+					caller.narrate("This commands requires a target.");
 					return;
 				}
 
@@ -93,21 +93,21 @@ public class StandartContextCommandExpansion implements ICommandPack {
 
 						if (damage > 0) {
 							((LiveActor) target).takeDamage(damage);
-							caller.playerNarrator.narrate("You hit the " + target.getName() + " causing "
+							caller.narrate("You hit the " + target.getName() + " causing "
 									+ damage + " damage.\n");
 							if (target instanceof Player)
-								((Player) target).playerNarrator.narrate("You were hit by "
+								((Player) target).narrate("You were hit by "
 										+ caller.getName() + " and took " + damage + " damage.\n");
 						} else {
-							caller.playerNarrator.narrate("You tried to hit the " + target.getName()
+							caller.narrate("You tried to hit the " + target.getName()
 									+ " but managed to cause no damage.\n");
 							if (target instanceof Player)
-								((Player) target).playerNarrator.narrate("You were hit by "
+								((Player) target).narrate("You were hit by "
 										+ caller.getName() + " but he caused no damage.\n");
 						}
 
 					} else {
-						caller.playerNarrator.narrate("You don't carry an inventory.\n");
+						caller.narrate("You don't carry an inventory.\n");
 					}
 				}
 			}
@@ -121,10 +121,10 @@ public class StandartContextCommandExpansion implements ICommandPack {
 				ItemContainer container = caller.getAttribute(ItemContainer.class, Model.inventory);
 
 				if (container != null) {
-					InventoryCommands.openContainer(caller, container);
-					caller.playerNarrator.narrate("Inventory opened.\n");
+					ItemContainerCommands.openContainer(caller, container);
+					caller.narrate("Inventory opened.\n");
 				} else {
-					caller.playerNarrator.narrate("You don't carry an inventory.\n");
+					caller.narrate("You don't carry an inventory.\n");
 				}
 			}
 		});

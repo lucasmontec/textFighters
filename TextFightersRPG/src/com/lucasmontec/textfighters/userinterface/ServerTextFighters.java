@@ -119,17 +119,15 @@ public class ServerTextFighters {
 		// regsiter both a input and a output
 		names.add(playerName);
 		Player newPlayer = new Player(playerName, new ServerInput(), new ServerNarrator(con));
-		players.put(newPlayer.ID, newPlayer);
-		connectionIDtoPlayerID.put(con.getID(), newPlayer.ID);
-		String registermsg = serverDriver.registerPlayer(newPlayer);
+		players.put(newPlayer.getID(), newPlayer);
+		connectionIDtoPlayerID.put(con.getID(), newPlayer.getID());
 
 		// Log
 		log("Registering " + newPlayer);
-		if (registermsg != null) {
-			log("Error registering: " + registermsg);
-		}
 
-		return newPlayer.ID;
+		serverDriver.registerPlayer(newPlayer);
+
+		return newPlayer.getID();
 	}
 
 	public void removePlayer(String pid) {
@@ -181,7 +179,7 @@ public class ServerTextFighters {
 				INPUT_MESSAGE input = (INPUT_MESSAGE) object;
 
 				// Get the player server input
-				ServerInput sinput = (ServerInput) players.get(input.pid).playerInput;
+				ServerInput sinput = (ServerInput) players.get(input.pid).getPlayerInput();
 				sinput.processFromClient(input.data);
 			}
 

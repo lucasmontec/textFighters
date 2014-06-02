@@ -21,10 +21,9 @@ public class Bug extends NPC {
 		ActionNode start = new ActionNode();
 		ActionNode node = new ActionNode(new Action() {
 			@Override
-			public String act(Player context, TaleDriver driver) {
-				context.playerNarrator.narrate("You smashed the bug.\n");
+			public void act(Player context, TaleDriver driver) {
+				context.narrate("You smashed the bug.\n");
 				setHealth(0);
-				return null;
 			}
 		}, "hit bug", "kill bug", "smash bug");
 		start.addSon(node);
