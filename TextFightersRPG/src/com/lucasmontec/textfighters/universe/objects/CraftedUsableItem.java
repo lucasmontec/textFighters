@@ -1,6 +1,6 @@
 package com.lucasmontec.textfighters.universe.objects;
 
-import alientextgame.model.general.UsableItem;
+import alientextgame.model.item.UsableItem;
 
 /**
  * A item that was made from a material.

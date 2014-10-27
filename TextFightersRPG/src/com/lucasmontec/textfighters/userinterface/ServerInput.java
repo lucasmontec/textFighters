@@ -1,8 +1,8 @@
 package com.lucasmontec.textfighters.userinterface;
 
 import alientextgame.core.TaleDriver;
+import alientextgame.model.general.IUserInput;
 import alientextgame.model.general.Player;
-import alientextgame.model.interfaces.IUserInput;
 
 public class ServerInput implements IUserInput {
 

@@ -6,9 +6,9 @@ import java.util.HashSet;
 
 import alientextgame.core.TaleDriver;
 import alientextgame.core.graph.SceneNode;
+import alientextgame.model.action.Action;
 import alientextgame.model.general.Actor;
 import alientextgame.model.general.Player;
-import alientextgame.model.general.actions.Action;
 import alientextgame.model.graph.ActionGraphStreamReader;
 import alientextgame.model.graph.ActionNode;
 import alientextgame.model.specific.triggers.TriggerSceneEntry;

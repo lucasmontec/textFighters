@@ -1,5 +1,6 @@
 package com.lucasmontec.textfighters.universe.commands;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 import alientextgame.base.commandPacks.ItemContainerCommands;
@@ -9,12 +10,11 @@ import alientextgame.core.TextCommand;
 import alientextgame.core.processing.ActorMatcher;
 import alientextgame.core.processing.Context;
 import alientextgame.model.general.Actor;
-import alientextgame.model.general.Item;
-import alientextgame.model.general.ItemContainer;
+import alientextgame.model.general.ICommandPack;
 import alientextgame.model.general.LiveActor;
 import alientextgame.model.general.Player;
-import alientextgame.model.interfaces.ICommandPack;
-import alientextgame.util.Util;
+import alientextgame.model.item.Item;
+import alientextgame.model.item.ItemContainer;
 
 import com.lucasmontec.textfighters.universe.DamageCalculator;
 import com.lucasmontec.textfighters.universe.Model;
@@ -26,11 +26,11 @@ public class StandartContextCommandExpansion implements ICommandPack {
 	@Override
 	public HashSet<TextCommand> getCommands() {
 		HashSet<TextCommand> pack = new HashSet<>();
-		pack.add(new TextCommand(false, true, "GET @ GRAB",
+		pack.add(new TextCommand(false, true, "$alias item", "GET @ GRAB",
 				"type GET <ITEMNAME> or GRAB <ITEMNAME> to store an item in the player inventory.") {
 			@Override
-			public void call(Player caller, String[] args, TaleDriver driver) {
-				String itemName = Util.reassembleArgs(args);
+			public void call(Player caller, HashMap<String, String> arguments, TaleDriver driver) {
+				String itemName = arguments.get("item");
 				Actor actor = ActorMatcher.matchSingle(itemName, driver.getHistory().getActiveScene(caller)
 						.getActors(), true, true);
 
@@ -56,17 +56,18 @@ public class StandartContextCommandExpansion implements ICommandPack {
 			}
 		});
 
-		pack.add(new TextCommand(false, true, "ATTACK @ ATK",
+		pack.add(new TextCommand(false, true, "$alias target", "ATTACK @ ATK",
 				"Type ATTACK <TARGET> or ATK <TARGET> to use your left hand item as a weapon and attack the target.") {
 			@Override
-			public void call(Player caller, String[] args, TaleDriver driver) {
-				if (args == null || args.length == 0) {
+			public void call(Player caller, HashMap<String, String> arguments, TaleDriver driver) {
+				String targetname = arguments.get("target");
+				if (targetname == null) {
 					caller.narrate("This commands requires a target.");
 					return;
 				}
 
 				// Lets find the target and see if its valid
-				Actor target = driver.getHistory().getActiveScene(caller).macthActor(args[0]);
+				Actor target = driver.getHistory().getActiveScene(caller).macthActor(targetname);
 
 				// Lets see if this target is valid
 				if (target instanceof LiveActor) {
@@ -113,10 +114,10 @@ public class StandartContextCommandExpansion implements ICommandPack {
 			}
 		});
 
-		pack.add(new TextCommand(false, true, "INVENTORY @ INV",
+		pack.add(new TextCommand(false, true, "$alias", "INVENTORY @ INV",
 				"Type INVENTORY or INV to access your local inventory.") {
 			@Override
-			public void call(Player caller, String[] args, TaleDriver driver) {
+			public void call(Player caller, HashMap<String, String> arguments, TaleDriver driver) {
 				// Get player inventory
 				ItemContainer container = caller.getAttribute(ItemContainer.class, Model.inventory);
 
@@ -134,7 +135,7 @@ public class StandartContextCommandExpansion implements ICommandPack {
 	@Override
 	public Context getContext() {
 		// Adds to normal commands
-		return BaseContexts.standart;
+		return BaseContexts.standart();
 	}
 
 }

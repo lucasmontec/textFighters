@@ -1,6 +1,6 @@
 package com.lucasmontec.textfighters.universe.objects;
 
-import alientextgame.model.general.Item;
+import alientextgame.model.item.Item;
 
 /**
  * An implementation of item that is also a crafted item

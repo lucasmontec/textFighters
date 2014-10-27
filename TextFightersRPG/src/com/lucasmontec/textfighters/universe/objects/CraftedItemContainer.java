@@ -1,6 +1,6 @@
 package com.lucasmontec.textfighters.universe.objects;
 
-import alientextgame.model.general.ItemContainer;
+import alientextgame.model.item.ItemContainer;
 
 public class CraftedItemContainer extends ItemContainer implements ICraftedItem {
 

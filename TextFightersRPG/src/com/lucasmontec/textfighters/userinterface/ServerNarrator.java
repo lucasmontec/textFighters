@@ -1,6 +1,6 @@
 package com.lucasmontec.textfighters.userinterface;
 
-import alientextgame.model.interfaces.INarrator;
+import alientextgame.model.general.INarrator;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.lucasmontec.textfighters.userinterface.Networking.OUTPUT_MESSAGE;

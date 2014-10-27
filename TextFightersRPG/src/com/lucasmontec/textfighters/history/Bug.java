@@ -1,8 +1,8 @@
 package com.lucasmontec.textfighters.history;
 
 import alientextgame.core.TaleDriver;
+import alientextgame.model.action.Action;
 import alientextgame.model.general.Player;
-import alientextgame.model.general.actions.Action;
 import alientextgame.model.graph.ActionNode;
 
 import com.lucasmontec.textfighters.universe.NPC;
